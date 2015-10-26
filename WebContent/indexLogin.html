@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Login Sistema de Compra Passagem</title>
+
+<link href="css/styleLogin.css" rel="stylesheet"
+	type="css/stylesLogin.css" />
+
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+
+<!--Slider-in icons-->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".userLogin").focus(function() {
+			$(".user-icon").css("left", "-48px");
+		});
+		$(".userLogin").blur(function() {
+			$(".user-icon").css("left", "0px");
+		});
+
+		$(".password").focus(function() {
+			$(".pass-icon").css("left", "-48px");
+		});
+		$(".password").blur(function() {
+			$(".pass-icon").css("left", "0px");
+		});
+	});
+</script>
+
+</head>
+<body>
+
+	<div id="wrapper">
+
+		<div class="user-icon"></div>
+		<div class="pass-icon"></div>
+
+
+		<form name="login-form" class="login-form" action="" method="post">
+
+			<div class="header">
+				<h1>Login Projeto Arqdesis</h1>
+			</div>
+
+
+			<div class="content">
+				<input name="userLogin" type="text" class="input username"
+					value="Username" onfocus="this.value=''" /> <input
+					name="passwordLogin" type="password" class="input password"
+					value="Password" onfocus="this.value=''" />
+			</div>
+
+			<tr>
+				<td><label for="typeAccess">Tipo de Acesso</label></td>
+				<td align="left"><select name="typeAccess">
+						<option value="funcionario">Acesso Funcionario</option>
+						<option value="gerente">Acesso Gerente</option>
+				</select></td>
+			</tr>
+			>
+
+			<div class="footer">
+				<input type="submit" name="submit" value="Login" class="button"
+					onclick="Principal()" />
+			</div>
+		</form>
+
+		<script type="text/javascript">
+			function Principal() {
+				location.href = "index.html"
+			}
+		</script>
+
+	</div>
+
+	<div class="gradient"></div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+public ArrayList<Flight> consultFlightsRest(String boardingFlight, String landingFlight){
+		String sqlConsult = "exec SP_ConsultFlights ?, ?";
+		PreparedStatement stm = null;
+		ResultSet rs = null;
+		ArrayList<Flight> listFlights = new ArrayList<Flight>();
+		
+		try{
+			stm = conn.prepareStatement(sqlConsult);
+                        stm.setString(1, boardingFlight);
+                        stm.setString(2, landingFlight);
+			rs = stm.executeQuery();
+			
+			while(rs.next()){
+				Flight flight = new Flight();
+				flight.setFlightID(rs.getInt(1));
+                                flight.setAirplaneID(rs.getInt(2));
+                                flight.setBoardingFlight(rs.getString(3));
+                                flight.setLandingFlight(rs.getString(4));
+                                flight.setTimeFlight(rs.getString(5));
+                                flight.setPriceFlight(rs.getBigDecimal(6));
+				flight.setQtySeatsAvailable(rs.getInt(7));
+                                
+				listFlights.add(flight);
+			}
+			
+			if(listFlights.isEmpty()){
+				listFlights = null;
+			}
+		}
+		catch(Exception e1){
+			e1.printStackTrace();
+			try
+			{
+				conn.rollback();
+			}
+			catch ( SQLException e2 )
+			{
+				System.out.print( e2.getStackTrace() );
+			}
+		}
+		finally
+		{
+			if ( stm != null )
+			{
+				try
+				{
+					stm.close();
+				}
+				catch( SQLException e1 )
+				{
+					System.out.print( e1.getStackTrace() );
+				}
+			}
+		}
+		return listFlights;
+	}
